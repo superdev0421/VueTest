@@ -1,0 +1,36 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noitem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+
+  span {
+    flex: none;
+    flex-grow: 0;
+
+    font-size: 30pt;
+  }
+  button {
+    width: 200px;
+    height: 40px;
+
+    border-radius: 5px;
+    background-color: #f5d6bc;
+    border: 2px solid #fac090;
+
+    font-size: 15pt;
+  }
+
+  button:hover {
+    background-color: #ffa963;
+    border: 2px solid #ffa963;
+    color: white;
+  }
+}

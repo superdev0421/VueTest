@@ -1,0 +1,10 @@
+<div class="note-container">
+  <div class="title">{{title}}</div>
+  <hr />
+  <div class="content">{{content}}</div>
+  <hr />
+  <div class="actions">
+    <button class="delete" @click="$emit('delete', itemKey)">Delete</button>
+    <button @click="$emit('update', itemKey)">Update</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="home">
+  <img alt="Vue logo" src="../assets/logo.png" />
+  <TitleComponent msg="Welcome to Test Assessment" />
+  <NotesContainer
+    v-for="note in notes"
+    :title="note.title"
+    :content="note.content"
+    :itemKey="note.itemKey"
+    @delete="(itemKey) => onDeleteItem(itemKey)"
+  />
+  <div class="noitem" v-if="notes.length === 0">
+    <span>There is no items to show. Press Create button to add note.</span>
+    <button>Create</button>
+  </div>
+</div>
