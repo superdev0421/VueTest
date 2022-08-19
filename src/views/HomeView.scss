@@ -4,6 +4,25 @@
   align-items: center;
 }
 
+.add-comment {
+  button {
+    width: 200px;
+    height: 40px;
+
+    border-radius: 5px;
+    background-color: #f5d6bc;
+    border: 2px solid #fac090;
+
+    font-size: 15pt;
+  }
+
+  button:hover {
+    background-color: #ffa963;
+    border: 2px solid #ffa963;
+    color: white;
+  }
+}
+
 .noitem {
   display: flex;
   flex-direction: column;

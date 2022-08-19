@@ -1,15 +1,25 @@
 <div class="home">
   <img alt="Vue logo" src="../assets/logo.png" />
   <TitleComponent msg="Welcome to Test Assessment" />
+  <div class="add-comment" v-if="notes.length > 0">
+    <button @click="onCreateItem()">Add New Note</button>
+  </div>
   <NotesContainer
     v-for="note in notes"
     :title="note.title"
     :content="note.content"
     :itemKey="note.itemKey"
+    :status="note.status"
+    :key="note.itemKey"
     @delete="(itemKey) => onDeleteItem(itemKey)"
+    @update="(itemKey) => onUpdateItem(itemKey)"
+    @discard-update="(itemKey) => onDiscardUpdateItem(itemKey)"
+    @confirm-update="(itemKey, valueTitle, valueContent) => onConfirmUpdateItem(itemKey, valueTitle, valueContent)"
+    @discard-create="(itemKey) => onDiscardCreateItem(itemKey)"
+    @confirm-create="(itemKey, valueTitle, valueContent) => onConfirmCreateItem(itemKey, valueTitle, valueContent)"
   />
   <div class="noitem" v-if="notes.length === 0">
     <span>There is no items to show. Press Create button to add note.</span>
-    <button>Create</button>
+    <button @click="onCreateItem()">Create</button>
   </div>
 </div>

@@ -10,7 +10,10 @@ export default defineComponent({
     status: String,
   },
   data() {
-    return {};
+    return {
+      valueTitle: this.title,
+      valueContent: this.content,
+    };
   },
   methods: {},
 });

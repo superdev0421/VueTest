@@ -1,10 +1,42 @@
-<div class="note-container">
+<div class="note-container" v-if="status === 'showing'">
   <div class="title">{{title}}</div>
   <hr />
   <div class="content">{{content}}</div>
   <hr />
   <div class="actions">
-    <button class="delete" @click="$emit('delete', itemKey)">Delete</button>
     <button @click="$emit('update', itemKey)">Update</button>
+    <button class="delete" @click="$emit('delete', itemKey)">Delete</button>
+  </div>
+</div>
+
+<div class="note-container" v-if="status === 'editing'">
+  <input v-model="valueTitle" placeholder="Note Title" />
+  <hr />
+  <textarea v-model="valueContent" placeholder="Input Content Here..." />
+  <hr />
+  <div class="actions">
+    <button @click="$emit('discardUpdate', itemKey)">Discard</button>
+    <button
+      class="confirm"
+      @click="$emit('confirmUpdate', itemKey, valueTitle, valueContent)"
+    >
+      Confirm
+    </button>
+  </div>
+</div>
+
+<div class="note-container" v-if="status === 'creating'">
+  <input v-model="valueTitle" placeholder="Note Title" />
+  <hr />
+  <textarea v-model="valueContent" placeholder="Input Content Here..." />
+  <hr />
+  <div class="actions">
+    <button @click="$emit('discardCreate', itemKey)">Discard</button>
+    <button
+      class="confirm"
+      @click="$emit('confirmCreate', itemKey, valueTitle, valueContent)"
+    >
+      Creat
+    </button>
   </div>
 </div>
