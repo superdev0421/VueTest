@@ -4,7 +4,7 @@
   <div class="content">{{content}}</div>
   <hr />
   <div class="actions">
-    <button @click="$emit('update', itemKey)">Update</button>
+    <button class="update" @click="$emit('update', itemKey)">Update</button>
     <button class="delete" @click="$emit('delete', itemKey)">Delete</button>
   </div>
 </div>
@@ -36,7 +36,7 @@
       class="confirm"
       @click="$emit('confirmCreate', itemKey, valueTitle, valueContent)"
     >
-      Creat
+      Create
     </button>
   </div>
 </div>
