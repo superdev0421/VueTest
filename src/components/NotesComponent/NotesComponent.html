@@ -31,7 +31,7 @@
   <textarea v-model="valueContent" placeholder="Input Content Here..." />
   <hr />
   <div class="actions">
-    <button @click="$emit('discardCreate', itemKey)">Discard</button>
+    <button @click="$emit('discardCreate')">Discard</button>
     <button
       class="confirm"
       @click="$emit('confirmCreate', itemKey, valueTitle, valueContent)"

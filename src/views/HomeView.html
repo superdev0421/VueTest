@@ -15,7 +15,7 @@
     @update="(itemKey) => onUpdateItem(itemKey)"
     @discard-update="(itemKey) => onDiscardUpdateItem(itemKey)"
     @confirm-update="(itemKey, valueTitle, valueContent) => onConfirmUpdateItem(itemKey, valueTitle, valueContent)"
-    @discard-create="(itemKey) => onDiscardCreateItem(itemKey)"
+    @discard-create="() => onDiscardCreateItem()"
     @confirm-create="(itemKey, valueTitle, valueContent) => onConfirmCreateItem(itemKey, valueTitle, valueContent)"
   />
   <div class="noitem" v-if="notes.length === 0">

@@ -1,7 +1,7 @@
 import { Options, Vue } from "vue-class-component";
 import TitleComponent from "@/components/TitleComponent/TitleComponent.vue";
 import NotesContainer from "@/components/NotesComponent/NotesComponent.vue";
-import { isTemplateNode } from "@vue/compiler-core";
+import { uuid } from "vue-uuid";
 
 interface itemDetail {
   title: string;
@@ -17,45 +17,29 @@ interface itemDetail {
   },
 })
 export default class HomeView extends Vue {
-  notes: Array<itemDetail> = [
-    {
-      title: "title1",
-      content: "content1",
-      itemKey: "1",
-      status: "showing",
-    },
-    {
-      title: "title2",
-      content: "content2",
-      itemKey: "2",
-      status: "showing",
-    },
-    {
-      title: "title3",
-      content: "content3",
-      itemKey: "3",
-      status: "showing",
-    },
-    {
-      title: "title4",
-      content: "content4",
-      itemKey: "4",
-      status: "showing",
-    },
-    {
-      title: "title5",
-      content: "content5",
-      itemKey: "5",
-      status: "showing",
-    },
-  ];
+  notes: Array<itemDetail> = [];
+
+  beforeMount() {
+    const data = localStorage.getItem("notesData");
+    if (data === null) {
+      this.notes = [];
+    } else this.notes = JSON.parse(data);
+  }
+
+  updateLocalStorage = (newNotes: Array<itemDetail>) => {
+    const data = localStorage.getItem("notesData");
+    if (data !== null) {
+      localStorage.removeItem("notesData");
+    }
+    localStorage.setItem("notesData", JSON.stringify(newNotes));
+  };
 
   onDeleteItem = (itemKey: string) => {
     const newNotes = this.notes.filter((item: itemDetail) => {
-      console.log(item.itemKey, itemKey);
       return item.itemKey !== itemKey;
     });
     this.notes = newNotes;
+    this.updateLocalStorage(this.notes);
   };
 
   onUpdateItem = (itemKey: string) => {
@@ -89,7 +73,6 @@ export default class HomeView extends Vue {
     valueTitle: string,
     valueContent: string
   ) => {
-    console.log("onConfirmUpdateItem", itemKey, valueTitle, valueContent);
     this.notes.forEach((item) => {
       if (item.itemKey === itemKey) {
         item.title = valueTitle;
@@ -97,6 +80,7 @@ export default class HomeView extends Vue {
         item.status = "showing";
       }
     });
+    this.updateLocalStorage(this.notes);
   };
 
   onCreateItem = () => {
@@ -111,13 +95,13 @@ export default class HomeView extends Vue {
     const newNode: itemDetail = {
       title: "",
       content: "",
-      itemKey: "NewItem",
+      itemKey: uuid.v4(),
       status: "creating",
     };
     this.notes.unshift(newNode);
   };
 
-  onDiscardCreateItem = (itemKey: string) => {
+  onDiscardCreateItem = () => {
     if (this.notes[0].status === "creating") this.notes.shift();
   };
 
@@ -126,10 +110,14 @@ export default class HomeView extends Vue {
     valueTitle: string,
     valueContent: string
   ) => {
-    if (this.notes[0].status === "creating") {
+    if (
+      this.notes[0].status === "creating" &&
+      this.notes[0].itemKey === itemKey
+    ) {
       this.notes[0].title = valueTitle;
       this.notes[0].content = valueContent;
       this.notes[0].status = "showing";
     }
+    this.updateLocalStorage(this.notes);
   };
 }
