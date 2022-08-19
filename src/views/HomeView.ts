@@ -73,6 +73,13 @@ export default class HomeView extends Vue {
     valueTitle: string,
     valueContent: string
   ) => {
+    if (valueTitle === "") {
+      alert("You have to input the title of the note.");
+      return;
+    } else if (valueContent === "") {
+      alert("You have to input the content of the note.");
+      return;
+    }
     this.notes.forEach((item) => {
       if (item.itemKey === itemKey) {
         item.title = valueTitle;
@@ -102,7 +109,9 @@ export default class HomeView extends Vue {
   };
 
   onDiscardCreateItem = () => {
-    if (this.notes[0].status === "creating") this.notes.shift();
+    if (this.notes[0].status === "creating") {
+      this.notes.shift();
+    }
   };
 
   onConfirmCreateItem = (
@@ -110,6 +119,13 @@ export default class HomeView extends Vue {
     valueTitle: string,
     valueContent: string
   ) => {
+    if (valueTitle === "") {
+      alert("You have to input the title of note.");
+      return;
+    } else if (valueContent === "") {
+      alert("You have to input the content of note.");
+      return;
+    }
     if (
       this.notes[0].status === "creating" &&
       this.notes[0].itemKey === itemKey
