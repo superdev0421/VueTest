@@ -1,4 +1,12 @@
+// ==========================================
+//  Title:  NotesComponent.spec.ts
+//  Date:   19 August 2022
+// ==========================================
+
+//  External Dependency
 import { shallowMount } from "@vue/test-utils";
+
+//  Internal Dependency
 import TitleComponent from "@/components/TitleComponent/TitleComponent";
 
 describe("TitleComponent.vue", () => {

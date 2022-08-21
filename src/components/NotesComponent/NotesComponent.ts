@@ -1,5 +1,12 @@
+/*
+==========================================
+  Title:  NotesComponent.ts
+  Date:   18 August 2022
+========================================== 
+*/
+
+// External Dependencies
 import { defineComponent } from "vue";
-// import Task from "../../models/Task";
 
 export default defineComponent({
   name: "NotesComponent",

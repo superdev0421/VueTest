@@ -1,3 +1,10 @@
+/*
+==========================================
+ Title:  HomeView.vue
+ Date:   18 August 2022
+==========================================
+*/
+
 <template src="./HomeView.html"></template>
 
 <script lang="ts" src="./HomeView.ts"></script>
